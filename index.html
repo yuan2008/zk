@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>枣科用户信息查询系统</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+</head>
+<body>
+    <!-- 悬浮回到顶部按钮 -->
+    <button id="floatBackToTop" class="float-btn">↑</button>
+
+    <div class="container">
+        <header>
+            <h1>枣科用户信息查询系统</h1>
+            <p>支持多条件搜索与批量照片处理</p>
+        </header>
+
+        <nav class="nav-bar">
+            <button class="nav-btn active" data-target="search-panel">用户搜索</button>
+            <button class="nav-btn" data-target="result-panel">查询结果</button>
+        </nav>
+
+        <main>
+            <!-- 搜索面板 -->
+            <section id="search-panel" class="panel active">
+                <h3>用户搜索与选择</h3>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="搜索：名字/账号/电话..." />
+                    <select id="departmentFilter" multiple size="1" title="按住Ctrl键可多选部门">
+                        <option value="">全部部门</option>
+                        <!-- 部门选项将通过JS动态生成 -->
+                    </select>
+                    <button id="searchBtn" class="btn primary">搜索</button>
+                    <button id="resetBtn" class="btn default">重置</button>
+                </div>
+                
+                <div class="search-result">
+                    <!-- 批量操作按钮 -->
+                    <div class="batch-actions">
+                        <button id="batchSelectBtn" class="btn primary">批量勾选</button>
+                        <button id="batchDeselectBtn" class="btn default">取消勾选</button>
+                        <button id="queryBtn" class="btn success">批量查询选中用户</button>
+                    </div>
+                    
+                    <h4>搜索结果 (<span id="result-count">0</span>)</h4>
+                    <div id="search-result-container" class="search-result-container">
+                        <p class="empty-hint">请输入关键词进行搜索</p>
+                    </div>
+                </div>
+                
+                <div class="selection-list">
+                    <h4>待查询列表 (<span id="selection-count">0</span>)</h4>
+                    <div id="selection-container" class="selection-container">
+                        <p class="empty-hint">从搜索结果中选择用户添加到查询列表</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 结果面板 -->
+            <section id="result-panel" class="panel">
+                <h3>查询结果</h3>
+                <div id="final-result-status" class="result-status">
+                    <p>共查询到 <span id="final-result-count">0</span> 条记录</p>
+                </div>
+                
+                <div id="final-result-list" class="final-result-list">
+                    <p class="empty-hint">查询结果将显示在这里</p>
+                </div>
+                
+                <div class="download-controls">
+                    <button id="downloadAllBtn" class="btn primary">下载全部照片</button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2023 枣科用户信息查询系统 | 数据源：内置TXT文件</p>
+        </footer>
+    </div>
+
+    <script src="app_yuanbao.js"></script>
+</body>
+</html>
